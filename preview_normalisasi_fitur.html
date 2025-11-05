@@ -1,0 +1,600 @@
+
+            <html>
+            <head>
+                <title>Preview Normalisasi Fitur</title>
+                <meta charset="UTF-8">
+                <style>
+                    body { 
+                        font-family: Arial, sans-serif; 
+                        margin: 20px; 
+                        background-color: #f5f5f5;
+                    }
+                    .container {
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        background-color: white;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+                    table { 
+                        border-collapse: collapse; 
+                        width: 100%; 
+                        margin: 20px 0;
+                    }
+                    th, td { 
+                        border: 1px solid #ddd; 
+                        padding: 8px; 
+                        text-align: left; 
+                        font-size: 12px;
+                    }
+                    th { 
+                        background-color: #4CAF50; 
+                        color: white;
+                        font-weight: bold;
+                    }
+                    tr:nth-child(even) { background-color: #f9f9f9; }
+                    tr:hover { background-color: #f5f5f5; }
+                    h1 { 
+                        color: #333; 
+                        border-bottom: 3px solid #4CAF50;
+                        padding-bottom: 10px;
+                    }
+                    h2 {
+                        color: #555;
+                        margin-top: 30px;
+                    }
+                    .info-box {
+                        background-color: #e8f5e9;
+                        padding: 15px;
+                        border-radius: 5px;
+                        margin: 20px 0;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>Preview Hasil Normalisasi & Rekayasa Fitur</h1>
+                    <div class="info-box">
+                        <p><strong>Total menu items:</strong> 32</p>
+                        <p><strong>Total fitur:</strong> 26</p>
+                        <p><strong>Fitur yang ditampilkan:</strong> 16</p>
+                    </div>
+                    
+                    <h2>20 Baris Pertama Dataset</h2>
+                    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>nama_minuman</th>
+      <th>rasa_asam</th>
+      <th>rasa_manis</th>
+      <th>rasa_pahit</th>
+      <th>rasa_gurih</th>
+      <th>rasa_netral</th>
+      <th>kafein_score</th>
+      <th>tingkat_kafein</th>
+      <th>tekstur_LIGHT</th>
+      <th>tekstur_CREAMY</th>
+      <th>tekstur_BUBBLY</th>
+      <th>tekstur_HEAVY</th>
+      <th>sweetness_score</th>
+      <th>carbonated_score</th>
+      <th>harga</th>
+      <th>original_harga</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ESPRESSO</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.00</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.166667</td>
+      <td>10000.00</td>
+    </tr>
+    <tr>
+      <td>AMERICANO</td>
+      <td>0.571429</td>
+      <td>0.000000</td>
+      <td>0.9</td>
+      <td>0.00</td>
+      <td>0.166667</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>CAPPUCCINO</td>
+      <td>0.428571</td>
+      <td>0.111111</td>
+      <td>0.8</td>
+      <td>0.00</td>
+      <td>0.333333</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>SANGER</td>
+      <td>0.285714</td>
+      <td>0.444444</td>
+      <td>0.6</td>
+      <td>1.00</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>sedang</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>MOCHACCINO</td>
+      <td>0.285714</td>
+      <td>0.333333</td>
+      <td>0.7</td>
+      <td>0.00</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>MACCHIATO</td>
+      <td>0.571429</td>
+      <td>0.444444</td>
+      <td>0.7</td>
+      <td>0.00</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>0.722222</td>
+      <td>20000.00</td>
+    </tr>
+    <tr>
+      <td>KOPI SUSU</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.4</td>
+      <td>1.00</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>sedang</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>KOPI SODA</td>
+      <td>0.000000</td>
+      <td>0.222222</td>
+      <td>0.9</td>
+      <td>0.00</td>
+      <td>0.166667</td>
+      <td>1.0</td>
+      <td>tinggi</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.444444</td>
+      <td>15000.00</td>
+    </tr>
+    <tr>
+      <td>KOPI LEMON</td>
+      <td>1.000000</td>
+      <td>0.222222</td>
+      <td>0.5</td>
+      <td>0.00</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>sedang</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>KOPI GULA AREN</td>
+      <td>0.000000</td>
+      <td>0.777778</td>
+      <td>0.4</td>
+      <td>0.50</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>sedang</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.7</td>
+      <td>0.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>BISCOFFEE</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.3</td>
+      <td>1.00</td>
+      <td>0.166667</td>
+      <td>1.0</td>
+      <td>rendah</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.7</td>
+      <td>1.0</td>
+      <td>0.833333</td>
+      <td>22000.00</td>
+    </tr>
+    <tr>
+      <td>BERRY SQUASH</td>
+      <td>0.428571</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>LEMON SQUASH</td>
+      <td>1.000000</td>
+      <td>0.444444</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.500000</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>LYCHEE SQUASH</td>
+      <td>0.857143</td>
+      <td>0.444444</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.666667</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>TELANG SQUASH</td>
+      <td>0.571429</td>
+      <td>0.555556</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>CHOCOLATE</td>
+      <td>0.000000</td>
+      <td>0.888889</td>
+      <td>0.0</td>
+      <td>0.50</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.8</td>
+      <td>0.0</td>
+      <td>0.611111</td>
+      <td>18000.00</td>
+    </tr>
+    <tr>
+      <td>CRUNCHY CREAMY</td>
+      <td>0.000000</td>
+      <td>0.888889</td>
+      <td>0.0</td>
+      <td>0.75</td>
+      <td>0.333333</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.8</td>
+      <td>0.0</td>
+      <td>0.722222</td>
+      <td>20000.00</td>
+    </tr>
+    <tr>
+      <td>VARIASI PINK</td>
+      <td>0.428571</td>
+      <td>0.555556</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.833333</td>
+      <td>0.0</td>
+      <td>non-kafein</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>1.000000</td>
+      <td>25000.00</td>
+    </tr>
+    <tr>
+      <td>TEH</td>
+      <td>0.142857</td>
+      <td>0.777778</td>
+      <td>0.3</td>
+      <td>0.50</td>
+      <td>0.500000</td>
+      <td>1.0</td>
+      <td>rendah</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.7</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>7000.00</td>
+    </tr>
+    <tr>
+      <td>TEH SEREH</td>
+      <td>0.000000</td>
+      <td>0.666667</td>
+      <td>0.3</td>
+      <td>0.50</td>
+      <td>0.666667</td>
+      <td>1.0</td>
+      <td>rendah</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.166667</td>
+      <td>10000.00</td>
+    </tr>
+  </tbody>
+</table>
+                    
+                    <h2>Ringkasan Statistik Fitur</h2>
+                    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Kategori</th>
+      <th>Fitur</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Mean</th>
+      <th>Std</th>
+      <th>Count</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rasa</td>
+      <td>rasa_asam</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.326</td>
+      <td>0.350</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Rasa</td>
+      <td>rasa_manis</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.556</td>
+      <td>0.268</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Rasa</td>
+      <td>rasa_pahit</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.309</td>
+      <td>0.311</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Rasa</td>
+      <td>rasa_gurih</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.242</td>
+      <td>0.345</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Rasa</td>
+      <td>rasa_netral</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.536</td>
+      <td>0.263</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Tekstur</td>
+      <td>tekstur_LIGHT</td>
+      <td>0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17</td>
+      <td>53.1%</td>
+    </tr>
+    <tr>
+      <td>Tekstur</td>
+      <td>tekstur_CREAMY</td>
+      <td>0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7</td>
+      <td>21.9%</td>
+    </tr>
+    <tr>
+      <td>Tekstur</td>
+      <td>tekstur_BUBBLY</td>
+      <td>0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>12.5%</td>
+    </tr>
+    <tr>
+      <td>Tekstur</td>
+      <td>tekstur_HEAVY</td>
+      <td>0</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>12.5%</td>
+    </tr>
+    <tr>
+      <td>Lainnya</td>
+      <td>kafein_score</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.594</td>
+      <td>0.499</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Lainnya</td>
+      <td>sweetness_score</td>
+      <td>0.000</td>
+      <td>0.800</td>
+      <td>0.419</td>
+      <td>0.275</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Lainnya</td>
+      <td>carbonated_score</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.250</td>
+      <td>0.440</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <td>Lainnya</td>
+      <td>harga</td>
+      <td>0.000</td>
+      <td>1.000</td>
+      <td>0.542</td>
+      <td>0.203</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+            </body>
+            </html>
+            

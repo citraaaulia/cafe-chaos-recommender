@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Rekomendasi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container-result">
+    <h1>Ini minuman yang cocok untuk {{ nama_customer }} hari ini!</h1>
+
+    {% if rekomendasi and rekomendasi|length > 0 %}
+    <div class="card-grid">
+      {% for item in rekomendasi %}
+      <div class="recommend-item">
+        <div class="card">
+          <div class="image-wrapper">
+            <img class="rec-items" src="{{ url_for('static', filename='uploads/' + item.foto) }}" alt="{{ item.nama_minuman }}">
+            
+            <div class="info-overlay">
+              <div class="info-row">
+                <h3>{{ item.nama_minuman }}</h3>
+                <p class="harga-minuman">{{ (item.harga / 1000)|int }}K</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% set label = 'Paling Cocok 🥇' if loop.index == 1
+        else 'Second Choice 🥈' if loop.index == 2
+        else 'Boleh dicoba 🥉' if loop.index == 3
+        else '' %}
+<div class="skor">
+  {% if label %}
+    <span class="choice-badge rank-{{ loop.index }}">{{ label }}</span>
+  {% endif %}
+</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="actions">
+      <p>Kurang yakin? <a href="{{ url_for('step1_nama') }}">Ulangi quiznya</a></p>
+      <br>
+      
+      <p>Apakah rekomendasi ini membantu?</p>
+      <div class="feedback">
+        <a href="{{ url_for('selesai_quiz') }}">
+        <button id="positive-feedback" class="finish-btn feedback-btn" data-feedback="positive">
+          Ya, makasih
+        </button>
+        </a>
+        <a href="{{ url_for('selesai_quiz') }}">
+        <button id="negative-feedback" class="finish-btn feedback-btn" data-feedback="negative">
+          Belum, nih
+        </button>
+        </a>
+      </div>
+          </div>
+
+    {% else %}
+    <!-- No recommendations found -->
+    <div class="no-recommendations">
+      <h3>Maaf, tidak ada rekomendasi yang cocok saat ini</h3>
+      <p>Mungkin kombinasi preferensi Anda terlalu spesifik atau produk sedang tidak tersedia.</p>
+      <div class="actions">
+        <a href="{{ url_for('step1_nama') }}" class="finish-btn">Coba Lagi</a>
+        <a href="{{ url_for('selesai_quiz') }}" class="finish-btn">Kembali ke Beranda</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+  $(document).ready(function() {
+      let feedbackSubmitted = false;
+
+      $('.feedback-btn').click(function() {
+          if (feedbackSubmitted) {
+              return; // Prevent multiple submissions
+          }
+
+          const feedbackValue = $(this).data('feedback');
+          const button = $(this);
+          
+          // Disable buttons and show loading
+          $('.feedback-btn').prop('disabled', true);
+          button.text('Mengirim...');
+
+          // Submit feedback via AJAX
+          $.ajax({
+              url: '{{ url_for("submit_feedback") }}',
+              method: 'POST',
+              data: {
+                  feedback: feedbackValue
+              },
+              success: function(response) {
+                  feedbackSubmitted = true;
+                  
+                  if (response.success) {
+                      $('#feedback-message')
+                          .removeClass('error')
+                          .addClass('success')
+                          .text(response.message)
+                          .show();
+                  } else {
+                      $('#feedback-message')
+                          .removeClass('success')
+                          .addClass('error')
+                          .text(response.message || 'Terjadi kesalahan')
+                          .show();
+                  }
+                  
+                  // Hide feedback buttons and show navigation
+                  $('.feedback').hide();
+                  $('#navigation-section').show();
+              },
+              error: function() {
+                  $('#feedback-message')
+                      .removeClass('success')
+                      .addClass('error')
+                      .text('Terjadi kesalahan jaringan')
+                      .show();
+                  
+                  // Re-enable buttons
+                  $('.feedback-btn').prop('disabled', false);
+                  button.text(feedbackValue === 'positive' ? 'Ya, makasih' : 'Belum, nih');
+              }
+          });
+      });
+  });
+  </script>
+
+  <style>
+  .feedback-btn {
+      margin: 5px;
+      transition: all 0.3s;
+  }
+  
+  .feedback-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+  }
+  
+  #feedback-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+  }
+  
+  #feedback-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+  }
+  
+  .no-recommendations {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      margin: 20px 0;
+  }
+  
+  .no-recommendations h3 {
+      color: #6c757d;
+      margin-bottom: 15px;
+  }
+  
+  .no-recommendations p {
+      color: #6c757d;
+      margin-bottom: 25px;
+      line-height: 1.5;
+  }
+  </style>
+</body>
+</html>

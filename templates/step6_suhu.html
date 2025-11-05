@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>suhu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container-question">
+    <form method="post">
+  <h3>6. Pilih suhu minuman yang kamu inginkan?</h3>
+
+  <label class="option">
+    <input type="radio" name="suhu" value="dingin" required {% if selected == 'dingin' %}checked{% endif %}>
+    <span>Dingin</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="suhu" value="panas" {% if selected == 'panas' %}checked{% endif %}>
+    <span>Panas</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="suhu" value="bebas" {% if selected == 'bebas' %}checked{% endif %}>
+    <span>Bebas</span>
+  </label><br>
+<br>
+<div class="button-container">
+  <a href="{{ url_for('step5_kafein') }}" class="previous">Kembali</a>
+
+  <form action="{{ url_for('step7_budget') }}" method="get">
+    <button class="next" type="submit">Selanjutnya</button>
+  </form>
+</div>
+</form>
+</div>
+</body>
+<script src="{{ url_for('static', filename='js/radioSelect.js') }}"></script>
+</html>

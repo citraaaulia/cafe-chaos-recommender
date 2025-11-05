@@ -1,0 +1,248 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="addmenu">
+  <button type="button" id="back-btn">
+    <img src="{{ url_for('static', filename='icons/back.svg') }}" alt="Kembali" width="20">
+  </button>
+  <h2>Tambah Menu</h2>
+</div>
+
+<div class="form-add-menu">
+  <form method="POST" enctype="multipart/form-data" id="addMenuForm">
+
+    <!-- 2 kolom: gunakan .stats-container yang sudah ada di CSS -->
+    <div class="stats-container" style="align-items:flex-start; flex-wrap:wrap;">
+
+      <!-- KOLOM KIRI -->
+      <div class="col-left" style="flex:1 1 460px; min-width:360px;">
+        <!-- Info umum -->
+        <section class="form-grid">
+          <h3>Ada menu baru apa di Chaos?</h3>
+
+          <label for="nama_minuman">Nama</label>
+          <input name="nama_minuman" id="nama_minuman" required>
+          <div class="error-message" id="error-nama_minuman"></div>
+
+          <div class="form-group">
+            <label>Kategori</label>
+            <div class="dropdown-check-list single" tabindex="100">
+              <span class="anchor">Pilih Kategori</span>
+              <ul class="items">
+                {% for category in options.categories %}
+                <li>
+                  <input required type="radio" id="category_{{ category.id }}" name="categories" value="{{ category.id }}">
+                  <label for="category_{{ category.id }}">{{ category.name }}</label>
+                </li>
+                {% endfor %}
+                <li><a href="{{ url_for('admin.manage_options', field='categories') }}" target="_blank">+ Tambah Kategori Baru</a></li>
+              </ul>
+              <div class="error-message" id="error-kategori"></div>
+            </div>
+          </div>
+
+          <label for="harga">Harga</label>
+          <input name="harga" id="harga" type="number" required>
+          <div class="error-message" id="error-harga"></div>
+
+          <label>Availability</label>
+          <div class="ketersediaan">
+            <label class="availability">
+              <input type="radio" name="availability" value="tersedia" required>
+              <span>Tersedia</span>
+            </label>
+            <label class="availability">
+              <input type="radio" name="availability" value="habis" required>
+              <span>Habis</span>
+            </label>
+          </div>
+          <div class="error-message" id="error-availability"></div>
+        </section>
+
+        <!-- Skor angka (short answers) -->
+        <section class="form-grid">
+          <h3>Gimana rasa minumannya?</h3>
+
+          <label for="kafein_score">Kafein Score (0-1)</label>
+          <input name="kafein_score" id="kafein_score" type="number" step="0.1" min="0" max="1" required>
+          <div class="error-message" id="error-kafein_score"></div>
+
+          <label for="rasa_manis">Rasa Manis (0-1)</label>
+          <input name="rasa_manis" id="rasa_manis" type="number" step="0.1" min="0" max="1" required>
+          <div class="error-message" id="error-rasa_manis"></div>
+
+          <label for="rasa_pahit">Rasa Pahit (0-1)</label>
+          <input name="rasa_pahit" id="rasa_pahit" type="number" step="0.1" min="0" max="1" required>
+          <div class="error-message" id="error-rasa_pahit"></div>
+
+          <label for="rasa_gurih">Rasa Gurih (0-1)</label>
+          <input name="rasa_gurih" id="rasa_gurih" type="number" step="0.1" min="0" max="1" required>
+          <div class="error-message" id="error-rasa_gurih"></div>
+
+          <label for="rasa_asam">Rasa Asam (0-1)</label>
+          <input name="rasa_asam" id="rasa_asam" type="number" step="0.1" min="0" max="1" required>
+          <div class="error-message" id="error-rasa_asam"></div>
+        </section>
+      </div>
+
+      <!-- KOLOM KANAN -->
+      <div class="col-right" style="flex:1 1 460px; min-width:360px;">
+        <!-- Kriteria minuman (select) -->
+        <section class="form-grid">
+          <h3>Kriteria Minuman</h3>
+
+          <label for="temperatur_opsi">Temperatur</label>
+          <select name="temperatur_opsi" id="temperatur_opsi" required>
+            <option value="">Pilih temperatur</option>
+            <option value="hot">Hot</option>
+            <option value="cold">Cold</option>
+            <option value="both">Both</option>
+          </select>
+          <div class="error-message" id="error-temperatur_opsi"></div>
+
+          <label for="tekstur">Tekstur</label>
+          <select name="tekstur" id="tekstur" required>
+            <option value="">Pilih tekstur</option>
+            <option value="tekstur_LIGHT">Light</option>
+            <option value="tekstur_CREAMY">Creamy</option>
+            <option value="tekstur_BUBBLY">Bubbly</option>
+            <option value="tekstur_HEAVY">Heavy</option>
+          </select>
+          <div class="error-message" id="error-tekstur"></div>
+
+          <label for="carbonated_score">Carbonated</label>
+          <select name="carbonated_score" id="carbonated_score" required>
+            <option value="">Pilih carbonated</option>
+            <option value="ya">Ya</option>
+            <option value="tidak">Tidak</option>
+          </select>
+          <div class="error-message" id="error-carbonated_score"></div>
+
+          <label for="sweetness_level">Sweetness Level</label>
+          <select name="sweetness_level" id="sweetness_level" required>
+            <option value="">Pilih sweetness level</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Bitter">Bitter</option>
+          </select>
+          <div class="error-message" id="error-sweetness_level"></div>
+        </section>
+
+        <!-- Servings (multi pilih) -->
+        <section class="form-grid">
+          <h3>Gimana servings menunya?</h3>
+
+          <div class="form-group">
+            <label>Bahan Utama</label>
+            <div class="dropdown-check-list" tabindex="100">
+              <span class="anchor">Pilih Bahan Utama</span>
+              <ul class="items">
+                {% for ingredient in options.main_ingredients %}
+                <li>
+                  <input type="checkbox" id="main_ingredient_{{ ingredient.id }}" name="main_ingredients" value="{{ ingredient.id }}" />
+                  <label for="main_ingredient_{{ ingredient.id }}">{{ ingredient.name }}</label>
+                </li>
+                {% endfor %}
+                <li><a href="{{ url_for('admin.manage_options', field='main_ingredients') }}" target="_blank">+ Tambah Bahan Utama Baru</a></li>
+              </ul>
+              <div class="error-message" id="error-bahan_utama"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Topping</label>
+            <div class="dropdown-check-list" tabindex="100">
+              <span class="anchor">Pilih Topping</span>
+              <ul class="items">
+                {% for topping in options.toppings %}
+                <li>
+                  <input type="checkbox" id="topping_{{ topping.id }}" name="toppings" value="{{ topping.id }}" />
+                  <label for="topping_{{ topping.id }}">{{ topping.name }}</label>
+                </li>
+                {% endfor %}
+                <li><a href="{{ url_for('admin.manage_options', field='toppings') }}" target="_blank">+ Tambah Topping Baru</a></li>
+              </ul>
+              <div class="error-message" id="error-topping"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Aroma</label>
+            <div class="dropdown-check-list" tabindex="100">
+              <span class="anchor">Pilih Aroma</span>
+              <ul class="items">
+                {% for aroma in options.aromas %}
+                <li>
+                  <input type="checkbox" id="aroma_{{ aroma.id }}" name="aromas" value="{{ aroma.id }}" />
+                  <label for="aroma_{{ aroma.id }}">{{ aroma.name }}</label>
+                </li>
+                {% endfor %}
+                <li><a href="{{ url_for('admin.manage_options', field='aromas') }}" target="_blank">+ Tambah Aroma Baru</a></li>
+              </ul>
+              <div class="error-message" id="error-aroma"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Flavour Notes</label>
+            <div class="dropdown-check-list" tabindex="100">
+              <span class="anchor">Pilih Flavour Notes</span>
+              <ul class="items">
+                {% for note in options.flavour_notes %}
+                <li>
+                  <input type="checkbox" id="flavour_note_{{ note.id }}" name="flavour_notes" value="{{ note.id }}" />
+                  <label for="flavour_note_{{ note.id }}">{{ note.name }}</label>
+                </li>
+                {% endfor %}
+                <li><a href="{{ url_for('admin.manage_options', field='flavour_notes') }}" target="_blank">+ Tambah Flavour Note Baru</a></li>
+              </ul>
+              <div class="error-message" id="error-flavor_notes"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Upload foto -->
+        <section class="form-grid">
+          <h3>Lengkapi data ini</h3>
+          <label for="foto">Foto</label>
+          <input name="foto" id="foto" type="file" accept="image/*" required>
+          <div class="error-message" id="error-foto"></div>
+        </section>
+      </div>
+      <!-- /KOLOM KANAN -->
+    </div>
+
+    <!-- Tombol -->
+    <div class="button-wrapper">
+      <button type="button" id="btn-cancel">Cancel</button>
+      <button type="button" id="btn-simpan">Simpan</button>
+    </div>
+  </form>
+</div>
+
+<!-- Modal tetap -->
+<div id="confirmationModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>Simpan Menu Baru?</h3>
+    <p>Pastikan semua data yang Anda masukkan sudah benar sebelum menyimpan.</p>
+    <div class="modal-actions">
+      <button onclick="closeModal()" id="modal-cancel">Tidak, Cek Lagi</button>
+      <button onclick="confirmSave()" id="modal-confirm">Ya, Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div id="discardChangesModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>Batalkan Perubahan?</h3>
+    <p>Kamu punya perubahan yang belum disimpan. Kamu yakin ingin membatalkan?</p>
+    <div class="modal-actions">
+      <button onclick="confirmDiscard()" id="modal-confirm2">Ya, Batalkan</button>
+      <button onclick="closeDiscardModal()" id="modal-cancel2">Tidak</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/addmenu.js') }}"></script>
+{% endblock %}

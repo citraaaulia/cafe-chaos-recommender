@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="menu-header">
+  <h2><a href="{{ url_for('admin.menu_list') }}">List Menu</a></h2>
+
+  <div class="menu-actions">
+    <form class="search-form" method="get" action="{{ url_for('admin.menu_list') }}">
+      <input type="text" name="search" placeholder="Search..." value="{{ search or '' }}">
+      <button class="search-btn" type="submit" aria-label="Cari">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </form>
+
+    <button class="search-toggle" id="search-toggle" aria-label="Buka pencarian" aria-expanded="false" aria-controls="search-drawer">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <a href="{{ url_for('admin.menu_add') }}" class="btn-add">+ Tambah</a>
+  </div>
+</div>
+
+<div class="search-drawer" id="search-drawer">
+  <form method="get" action="{{ url_for('admin.menu_list') }}" class="search-drawer-form">
+    <input type="text" name="search" placeholder="Search..." value="{{ search or '' }}" autofocus>
+    <button class="search-btn" type="submit" aria-label="Cari">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<div class="menu-container">
+  {% for menu in menu_items %}
+    <div class="menu-card" data-href="{{ url_for('admin.menu_detail', menu_id=menu.menu_id) }}">
+      <div class="menu-wrapper">
+        <div>
+          <img src="{{ url_for('static', filename='uploads/' ~ menu.foto) if menu.foto else url_for('static', filename='images/default.jpg') }}" alt="foto menu">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-name">
+            {{ menu.nama_minuman }}
+            <a href="{{ url_for('admin.menu_edit', menu_id=menu.menu_id) }}" onclick="event.stopPropagation()">
+              <img id="edit" src="{{ url_for('static', filename='icons/edit.svg') }}" alt="Edit Menu" width="20">
+            </a>
+          </div>
+          <div class="menu-price">Rp {{ "{:,.0f}".format(menu.harga|float) }}</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if page > 1 %}<a href="{{ url_for('admin.menu_list', page=page-1) }}">‹</a>{% endif %}
+  <span>{{ page }}/{{ total_pages }}</span>
+  {% if page < total_pages %}<a href="{{ url_for('admin.menu_list', page=page+1) }}">›</a>{% endif %}
+</div>
+
+<script>
+  // jadikan kartu bisa diklik ke halaman detail
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const url = card.getAttribute('data-href');
+      if (url) window.location.href = url;
+    });
+  });
+</script>
+{% endblock %}

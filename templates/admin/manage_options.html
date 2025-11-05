@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="addmenu">
+  <button type="button" id="back-btn"
+          data-fallback="{{ url_for('admin.manajemen_input') }}">
+    <img src="{{ url_for('static', filename='icons/back.svg') }}" alt="Kembali" width="20">
+  </button>
+  <h2>Kelola {{ field_label }}</h2>
+</div>
+
+<div class="mb-3">
+  <form action="{{ url_for('admin.manage_options', field=field_name) }}" method="post" class="form-inline">
+    <input type="hidden" name="id" value="{{ item.id if item else '' }}">
+    <input type="text" name="name" placeholder="Nama {{ field_label }}" value="{{ item.name if item else '' }}" required>
+    <button type="submit" class="add-button">{{ 'Update' if item else 'Tambah' }}</button>
+    {% if item %}
+      <a class="cancel-button" href="{{ url_for('admin.manage_options', field=field_name) }}">Batal</a>
+    {% endif %}
+  </form>
+</div>
+
+<!-- bungkus dengan .table-container seperti di riwayat -->
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nama {{ field_label }}</th>
+        <th style="width:150px;">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for option in options %}
+      <tr>
+        <td>{{ option.name }}</td>
+        <td class="action-links">
+          <a href="{{ url_for('admin.manage_options', field=field_name) }}?edit={{ option.id }}">Edit</a>
+          <form action="{{ url_for('admin.delete_option', field=field_name, opt_id=option.id) }}" method="post" style="display:inline" onsubmit="return confirm('Hapus item ini?')">
+            <button type="submit" class="link-button">Hapus</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not options %}
+      <tr><td colspan="2" class="no-data">Belum ada data.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+<script src="{{ url_for('static', filename='js/input.js') }}"></script>
+
+{% endblock %}

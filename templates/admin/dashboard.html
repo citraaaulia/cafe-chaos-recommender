@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" id="backgroud">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+  <div>
+    <div class="header-admin">
+<header class="top-bar-admin">
+  <!-- Kiri: Navigasi utama -->
+  <div class="nav-left">
+    <form action="{{ url_for('admin.dashboard') }}" method="get">
+      <button type="submit" id="dashboard">Dashboard</button>
+    </form>
+    <form action="{{ url_for('admin.menu_list') }}" method="get">
+      <button type="submit" id="dashboard">Daftar Menu</button>
+    </form>
+    <form action="{{ url_for('admin.riwayat') }}" method="get">
+      <button type="submit" id="dashboard">Riwayat</button>
+    </form>
+  </div>
+
+  <!-- Kanan: Logout -->
+  <div class="keluar">
+    <a href="{{ url_for('admin.logout') }}">Logout</a>
+  </div>
+</header>
+
+  <h2 class="title-dashboard">Dashboard</h2>
+  
+<div class="stats-container">
+  <div class="stat-card">
+    <h4>Total Menu</h4>
+    <p>{{ stats.total_menu }}</p>
+  </div>
+  <div class="stat-card">
+    <h4>Total Preferences</h4>
+    <p>{{ stats.total_preferences }}</p>
+  </div>
+  <div class="stat-card">
+    <h4>Total Recommendations</h4>
+    <p>{{ stats.total_recommendations }}</p>
+  </div>
+</div>
+
+  <h3>Aktivitas Terakhir</h3>
+  <ul>
+    {% for user in recent_activities %}
+      <li>{{ user[0] }} - {{ user[1] }}, {{ user[2] }} ({{ user[3] }})</li>
+    {% endfor %}
+  </ul>
+
+    </div>
+</body>
+</html>

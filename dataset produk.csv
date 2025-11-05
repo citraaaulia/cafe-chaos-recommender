@@ -1,0 +1,33 @@
+menu_id;nama_minuman;kategori;rasa_asam;rasa_manis;rasa_pahit;rasa_gurih;tekstur;temperatur;temperatur_opsi;kafein;bahan_utama;topping;carbonated;sweetness_level;harga;popularitas;foto;aroma;flavor_notes
+MI_01;ESPRESSO;ESPRESSO BASED;0.6;0;1;0;LIGHT;Dingin;Dingin, Panas;Ya;Kopi;-;Tidak;Bitter;10000;574;espresso.png;kopi;earthy
+MI_02;AMERICANO;ESPRESSO BASED;0.4;0;0.9;0;LIGHT;Dingin;Dingin, Panas;Ya;Kopi, Air;-;Tidak;Bitter;15000;1518;americano.png;kopi;earthy
+MI_03;CAPPUCCINO;ESPRESSO BASED;0.3;0.1;0.8;0;LIGHT;Dingin;Dingin, Panas;Ya;Kopi, Susu;-;Tidak;Low;15000;896;cappuccino.png;kopi;earthy
+MI_04;SANGER;ESPRESSO BASED;0.2;0.4;0.6;0.4;LIGHT;Dingin;Dingin, Panas;Ya;Kopi, Susu Kental Manis;-;Tidak;Medium;15000;4921;sanger.png;kopi;earthy, creamy
+MI_05;MOCHACCINO;ESPRESSO BASED;0.2;0.3;0.7;0;CREAMY;Dingin;Dingin;Ya;Kopi, Cokelat, Susu;-;Tidak;Low;15000;626;mochaccino.png;kopi;earthy, chocolaty
+MI_06;MACCHIATO;ESPRESSO BASED;0.4;0.4;0.7;0;LIGHT;Dingin;Dingin;Ya;Kopi, Foam;-;Tidak;Low;20000;1090;macchiato.png;kopi;earthy
+MI_07;KOPI SUSU;KOPI;0;0.6;0.4;0.4;CREAMY;Dingin;Dingin;Ya;Kopi, Susu, Gula;-;Tidak;Medium;15000;6077;kopi_susu.png;kopi;creamy
+MI_08;KOPI SODA;KOPI;0;0.2;0.9;0;LIGHT;Dingin;Dingin;Ya;Kopi, Soda;-;Ya;Bitter;15000;853;kopi_soda.png;kopi;earthy
+MI_09;KOPI LEMON;KOPI;0.7;0.2;0.5;0;LIGHT;Dingin;Dingin;Ya;Kopi, Lemon;-;Tidak;Bitter;18000;742;kopi_lemon.png;kopi;earthy, fruity
+MI_10;KOPI GULA AREN;KOPI;0;0.7;0.4;0.2;CREAMY;Dingin;Dingin;Ya;Kopi, Gula Aren, Susu;-;Tidak;Medium;18000;1553;kopi_gula_aren.png;kopi;caramelized
+MI_11;BISCOFFEE;KOPI;0;0.9;0.1;0.4;HEAVY;Dingin;Dingin;Ya;Kopi, Susu, Selai Biscoff;Biscoff;Ya;Medium;22000;397;biscoffee.png;kopi;caramelized, creamy
+MI_12;BERRY SQUASH;SODA;0.3;0.6;0;0;BUBBLY;Dingin;Dingin;Tidak;Soda, Sirup Berry;-;Ya;Medium;18000;2425;berry_squash.png;buah;fruity
+MI_13;LEMON SQUASH;SODA;0.7;0.4;0;0;BUBBLY;Dingin;Dingin;Tidak;Soda, Lemon, Sirup;-;Ya;Low;18000;1397;lemon_squash.png;buah;fruity
+MI_14;LYCHEE SQUASH;SODA;0.6;0.4;0;0;BUBBLY;Dingin;Dingin;Tidak;Soda, Sirup Leci;-;Ya;Low;18000;2908;lychee_squash.png;buah;fruity
+MI_15;TELANG SQUASH;SODA;0.4;0.5;0;0;BUBBLY;Dingin;Dingin;Tidak;Bunga Telang, Soda, Sirup;-;Ya;Low;18000;418;telang_squash.png;rempah;netral
+MI_16;CHOCOLATE;COKELAT;0;0.8;0;0.2;CREAMY;Dingin;Dingin;Tidak;Bubuk Cokelat, Air;-;Tidak;High;18000;374;cokelat.png;cokelat;caramelized, chocolaty
+MI_17;CRUNCHY CREAMY;COKELAT;0;0.8;0;0.3;CREAMY;Dingin;Dingin;Tidak;Susu, Cokelat Susu;Regal;Tidak;High;20000;395;crunchy_creamy.png;cokelat;caramelized, chocolaty
+MI_18;VARIASI PINK;YAKULT;0.3;0.5;0;0;CREAMY;Dingin;Dingin;Tidak;Yakult, Strawberry, Soda, Susu;Nata de Coco, Strawberry;Ya;Medium;25000;436;variasi_pink.png;buah;fruity, creamy
+MI_19;TEH;TEA;0.1;0.7;0.1;0.2;LIGHT;Dingin;Dingin, Panas;Ya;Teh;-;Tidak;Medium;7000;9101;teh.png;alami;netral
+MI_20;TEH SEREH;TEA;0;0.6;0.2;0.2;LIGHT;Dingin;Dingin, Panas;Ya;Teh, Sereh;-;Tidak;Medium;10000;1058;teh_sereh.png;alami;netral
+MI_21;TEH HIJAU;TEA;0.2;0.6;0.3;0.2;LIGHT;Dingin;Dingin, Panas;Ya;Teh Hijau;-;Tidak;Medium;12000;1256;teh_hijau.png;alami;fruity
+MI_22;TEH LEMON;TEA;0.7;0.4;0.1;0;LIGHT;Dingin;Dingin, Panas;Ya;Teh, Lemon;-;Tidak;Low;15000;2604;teh_lemon.png;buah;fruity
+MI_23;TEH JAHE;TEA;0.3;0.4;0.1;0;LIGHT;Dingin;Dingin, Panas;Ya;Teh, Jahe;-;Tidak;Low;15000;244;teh_jahe.png;alami;netral
+MI_24;TEH JAHE SEREH;TEA;0.4;0.4;0.2;0;LIGHT;Dingin;Dingin, Panas;Ya;Teh, Jahe, Sereh;-;Tidak;Low;18000;17;teh_sereh.png;alami;netral
+MI_25;TEH LECI;TEA;0.4;0.5;0.1;0;LIGHT;Dingin;Dingin;Ya;Teh, Leci;-;Tidak;Medium;18000;1684;teh_lychee.png;buah;fruity
+MI_26;TEH STRAWBERRY;TEA;0.3;0.5;0.1;0;LIGHT;Dingin;Dingin;Ya;Teh, Strawberry;-;Tidak;Low;18000;480;teh_strawberry.png;buah;fruity
+MI_27;JAHE MERAH;HERBAL;0.4;0.4;0.1;0;LIGHT;Dingin;Dingin, Panas;Tidak;Jahe Merah;-;Tidak;Medium;15000;644;jahe_merah.png;alami;netral
+MI_28;LEMON KISS;MOCKTAIL;0.7;0.5;0;0;LIGHT;Dingin;Dingin;Tidak;Lemon, Soda, Sirup;-;Ya;Medium;15000;1450;lemon_kiss.png;buah;fruity
+MI_29;BANANA;SMOOTHIES;0;0.9;0;0.1;HEAVY;Dingin;Dingin;Tidak;Pisang, Susu;-;Tidak;High;20000;8;banana.png;buah;creamy, fruity
+MI_30;AVOCADO;SMOOTHIES;0;0.8;0;0.3;HEAVY;Dingin;Dingin;Tidak;Alpukat, Susu;-;Tidak;High;20000;18;avocado.png;buah;creamy, fruity
+MI_31;MANGO;SMOOTHIES;0.2;0.8;0;0;HEAVY;Dingin;Dingin;Tidak;Mangga, Susu;-;Tidak;High;20000;230;mango.png;buah;creamy, fruity
+MI_32;STRAWBERRY;SMOOTHIES;0.2;0.7;0;0;HEAVY;Dingin;Dingin;Tidak;Strawberry, Susu;-;Tidak;High;20000;729;strawberry.png;buah;creamy, fruity

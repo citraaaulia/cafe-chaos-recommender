@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>rasa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container-question">
+    <form method="post">
+  <h3>3. Ingin rasa minuman seperti apa?</h3>
+
+  <label class="option">
+    <input type="radio" name="rasa" value="pahit" {% if selected == 'pahit' %}checked{% endif %} required>
+    <span>Pahit seperti kopi hitam</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="rasa" value="manis" {% if selected == 'manis' %}checked{% endif %}>
+    <span> Manis dan lembut seperti susu/cokelat</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="rasa" value="asam" {% if selected == 'asam' %}checked{% endif %}>
+    <span>Asam dan segar seperti lemon/berry</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="rasa" value="netral" {% if selected == 'netral' %}checked{% endif %}>
+    <span>Netral dan ringan aja</span> 
+  </label><br>
+
+  <br>
+
+<div class="button-container">
+  <a href="{{ url_for('step2_mood') }}" class="previous">Kembali</a>
+
+  <form action="{{ url_for('step4_tekstur') }}" method="get">
+    <button class="next" type="submit">Selanjutnya</button>
+  </form>
+</div>
+
+</form>
+  </div>
+  <script src="{{ url_for('static', filename='js/radioSelect.js') }}"></script>
+</body>
+</html>

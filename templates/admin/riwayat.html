@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="history">
+<h2>Riwayat</h2>
+</div>
+   <div class="container-admin">
+        <!-- Filter dan Pencarian -->
+        <div class="filter-container">
+            <form method="GET" action="{{ url_for('admin.riwayat') }}">
+                <div class="form-row">
+                    <div class="form-group search-group">
+                        <label for="search">Cari Nama / Session ID</label>
+                        <input type="text" name="search" id="search2" placeholder="Masukkan nama atau session ID..." value="{{ search or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date">Tanggal Mulai</label>
+                        <input type="date" name="start_date" id="start_date" value="{{ start_date or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">Tanggal Akhir</label>
+                        <input type="date" name="end_date" id="end_date" value="{{ end_date or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback_status">Status Feedback</label>
+                        <select name="feedback_status" id="feedback_status">
+                            <option value="">Semua Status</option>
+                            <option value="pending" {% if feedback_status == 'pending' %}selected{% endif %}>Pending</option>
+                            <option value="completed" {% if feedback_status == 'completed' %}selected{% endif %}>Completed</option>
+                            <option value="skipped" {% if feedback_status == 'skipped' %}selected{% endif %}>Skipped</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-filter">Terapkan Filter</button>
+                    <a href="{{ url_for('admin.riwayat') }}" class="btn-reset">Reset</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabel Riwayat -->
+        <div class="table-container">
+            <table>
+<thead>
+  <tr>
+    <th>Session ID</th>
+    <th>Waktu Input</th>
+    <th>Preference ID</th>
+    <th>Nama Customer</th>
+    <th>Quiz Attempt</th>
+    <th>Status Feedback</th>
+    <th>Feedback</th>
+    <th>Aksi</th>
+  </tr>
+</thead>
+<tbody>
+{% if riwayat_items %}
+  {% for item in riwayat_items %}
+  <tr>
+    <td>{{ item.session_id }}</td>
+    <td>{{ item.timestamp.strftime('%d %b %Y, %H:%M') }}</td>
+    <td>{{ item.pref_id }}</td>
+    <td>{{ item.nama_customer or '-' }}</td>
+    <td>{{ item.quiz_attempt }}</td>
+    <td><span class="status-badge status-{{ item.feedback_status }}">{{ item.feedback_status|capitalize }}</span></td>
+<td>{{ 'Belum ada' if (item.feedback_text is not defined or item.feedback_text in ['', None, '-']) else item.feedback_text }}</td>
+    <td><button class="btn-detail" data-pref-id="{{ item.pref_id }}">Lihat Detail</button></td>
+  </tr>
+  {% endfor %}
+{% else %}
+  <tr><td colspan="8" class="no-data">Tidak ada data riwayat.</td></tr>
+{% endif %}
+</tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="{{ url_for('admin.riwayat', page=page-1, search=search, start_date=start_date, end_date=end_date, feedback_status=feedback_status) }}">&laquo;</a>
+            {% endif %}
+            
+            <span>Halaman {{ page }} dari {{ total_pages }}</span>
+
+            {% if page < total_pages %}
+                <a href="{{ url_for('admin.riwayat', page=page+1, search=search, start_date=start_date, end_date=end_date, feedback_status=feedback_status) }}">&raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Modal untuk Detail Preferensi -->
+    <div id="detail-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Detail Preferensi</h3>
+            <div id="modal-body">
+                <!-- Konten detail akan diisi oleh JavaScript -->
+                <p>Memuat data...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link ke JavaScript -->
+    <script src="{{ url_for('static', filename='js/riwayat.js') }}"></script>
+{% endblock %}

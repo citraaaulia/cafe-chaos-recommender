@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Header seragam dengan menu_add -->
+<div class="manajemeninput">
+  <h2>Manajemen Input</h2>
+  <p class="page-sub" style="text-align:center;color:#fff;margin:0 0 8px;">
+  Pilih jenis data yang ingin dikelola.
+</p>
+
+</div>
+
+<div class="input-management-list">
+  <a class="management-link" href="{{ url_for('admin.manage_options', field='categories') }}">
+    <span>Kelola Kategori</span>
+    <span class="link-cta">
+      <img src="{{ url_for('static', filename='icons/manajemeninput.svg') }}" alt="">
+    </span>
+  </a>
+
+  <a class="management-link" href="{{ url_for('admin.manage_options', field='main_ingredients') }}">
+    <span>Kelola Bahan Utama</span>
+    <span class="link-cta">
+      <img src="{{ url_for('static', filename='icons/manajemeninput.svg') }}" alt="">
+    </span>
+  </a>
+
+  <a class="management-link" href="{{ url_for('admin.manage_options', field='toppings') }}">
+    <span>Kelola Topping</span>
+    <span class="link-cta">
+      <img src="{{ url_for('static', filename='icons/manajemeninput.svg') }}" alt="">
+    </span>
+  </a>
+
+  <a class="management-link" href="{{ url_for('admin.manage_options', field='aromas') }}">
+    <span>Kelola Aroma</span>
+    <span class="link-cta">
+      <img src="{{ url_for('static', filename='icons/manajemeninput.svg') }}" alt="">
+    </span>
+  </a>
+
+  <a class="management-link" href="{{ url_for('admin.manage_options', field='flavour_notes') }}">
+    <span>Kelola Flavour Notes</span>
+    <span class="link-cta">
+      <img src="{{ url_for('static', filename='icons/manajemeninput.svg') }}" alt="">
+    </span>
+  </a>
+</div>
+{% endblock %}

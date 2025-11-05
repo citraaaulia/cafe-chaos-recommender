@@ -1,0 +1,14 @@
+Kategori,Fitur,Min,Max,Mean,Std,Count,Percentage
+Rasa,rasa_asam,0.000,1.000,0.326,0.350,,
+Rasa,rasa_manis,0.000,1.000,0.556,0.268,,
+Rasa,rasa_pahit,0.000,1.000,0.309,0.311,,
+Rasa,rasa_gurih,0.000,1.000,0.242,0.345,,
+Rasa,rasa_netral,0.000,1.000,0.536,0.263,,
+Tekstur,tekstur_LIGHT,0,1,,,17,53.1%
+Tekstur,tekstur_CREAMY,0,1,,,7,21.9%
+Tekstur,tekstur_BUBBLY,0,1,,,4,12.5%
+Tekstur,tekstur_HEAVY,0,1,,,4,12.5%
+Lainnya,kafein_score,0.000,1.000,0.594,0.499,,
+Lainnya,sweetness_score,0.000,0.800,0.419,0.275,,
+Lainnya,carbonated_score,0.000,1.000,0.250,0.440,,
+Lainnya,harga,0.000,1.000,0.542,0.203,,

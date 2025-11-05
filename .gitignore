@@ -1,0 +1,45 @@
+# ===== OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ===== Python umum
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# ===== Virtual env
+venv/
+.venv/
+env/
+.envs/
+
+# ===== Flask / DB lokal
+instance/
+*.sqlite3
+
+# ===== Environment variables
+.env
+.env.*
+!.env.example
+
+# ===== Notebook Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# ===== Log & cache
+*.log
+
+# ===== Upload/media
+static/uploads/
+static/temp/
+
+# ===== Frontend build (jika ada)
+node_modules/
+dist/
+
+# ===== File besar lain
+*.pbix

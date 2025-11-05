@@ -1,0 +1,571 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="detail-header">
+    <div class="header-left">
+        <a href="{{ url_for('admin.riwayat') }}" class="btn-back">
+            ← Kembali ke Riwayat
+        </a>
+        <h2>Detail Preferensi Quiz</h2>
+    </div>
+    <div class="header-right">
+        <span class="detail-id">ID: {{ preference.pref_id }}</span>
+    </div>
+</div>
+
+<div class="detail-container">
+    <div class="detail-card">
+        <div class="card-header">
+            <h3>📋 Informasi Customer</h3>
+            <span class="status-badge status-{{ preference.feedback_status }}">
+                {{ preference.feedback_status|title }}
+            </span>
+        </div>
+        
+        <div class="card-content">
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Nama Customer:</label>
+                    <value>{{ preference.nama_customer }}</value>
+                </div>
+                
+                <div class="info-item">
+                    <label>Tanggal Quiz:</label>
+                    <value>
+                        {{ preference.timestamp.strftime('%d %B %Y, %H:%M WIB') if preference.timestamp else 'Tidak tersedia' }}
+                    </value>
+                </div>
+                
+                <div class="info-item">
+                    <label>Status Feedback:</label>
+                    <value>
+                        <span class="status-badge status-{{ preference.feedback_status }}">
+                            {{ preference.feedback_status|title }}
+                        </span>
+                    </value>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-card">
+        <div class="card-header">
+            <h3>🎯 Preferensi Quiz</h3>
+        </div>
+        
+        <div class="card-content">
+            <div class="preferences-grid">
+                <div class="pref-item">
+                    <div class="pref-icon">😊</div>
+                    <div class="pref-content">
+                        <label>Mood yang Diinginkan</label>
+                        <value class="mood-badge mood-{{ preference.mood }}">
+                            {{ preference.mood|title }}
+                        </value>
+                        <description>
+                            {% if preference.mood == 'energi' %}
+                                Customer ingin minuman yang dapat memberikan energi dan semangat
+                            {% elif preference.mood == 'rileks' %}
+                                Customer ingin minuman yang dapat membantu relaksasi
+                            {% elif preference.mood == 'menyegarkan' %}
+                                Customer ingin minuman yang menyegarkan
+                            {% elif preference.mood == 'manis' %}
+                                Customer ingin minuman dengan rasa manis dan menyenangkan
+                            {% else %}
+                                Mood yang dipilih customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+
+                <div class="pref-item">
+                    <div class="pref-icon">👅</div>
+                    <div class="pref-content">
+                        <label>Preferensi Rasa</label>
+                        <value class="rasa-badge rasa-{{ preference.rasa }}">
+                            {{ preference.rasa|title }}
+                        </value>
+                        <description>
+                            {% if preference.rasa == 'pahit' %}
+                                Customer menyukai rasa pahit yang khas
+                            {% elif preference.rasa == 'manis' %}
+                                Customer menyukai rasa manis yang lembut
+                            {% elif preference.rasa == 'asam' %}
+                                Customer menyukai rasa asam yang segar
+                            {% elif preference.rasa == 'netral' %}
+                                Customer menyukai rasa yang tidak terlalu ekstrem
+                            {% else %}
+                                Preferensi rasa yang dipilih customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+
+                <div class="pref-item">
+                    <div class="pref-icon">🥤</div>
+                    <div class="pref-content">
+                        <label>Tekstur Minuman</label>
+                        <value class="tekstur-badge tekstur-{{ preference.tekstur }}">
+                            {{ preference.tekstur|title }}
+                        </value>
+                        <description>
+                            {% if preference.tekstur == 'light' %}
+                                Customer menginginkan tekstur ringan dan mudah diminum
+                            {% elif preference.tekstur == 'creamy' %}
+                                Customer menginginkan tekstur krim yang lembut dan kaya
+                            {% elif preference.tekstur == 'heavy' %}
+                                Customer menginginkan tekstur yang kental dan mengenyangkan
+                            {% elif preference.tekstur == 'bubbly' %}
+                                Customer menginginkan tekstur dengan gelembung yang menyegarkan
+                            {% else %}
+                                Tekstur yang diinginkan customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+
+                <div class="pref-item">
+                    <div class="pref-icon">☕</div>
+                    <div class="pref-content">
+                        <label>Level Kafein</label>
+                        <value class="kafein-badge kafein-{{ preference.kafein }}">
+                            {{ preference.kafein|title }}
+                        </value>
+                        <description>
+                            {% if preference.kafein == 'tinggi' %}
+                                Customer membutuhkan kandungan kafein yang tinggi
+                            {% elif preference.kafein == 'sedang' %}
+                                Customer menginginkan kafein dalam jumlah sedang
+                            {% elif preference.kafein == 'rendah' %}
+                                Customer menginginkan kafein dalam jumlah rendah
+                            {% elif preference.kafein == 'non-kafein' %}
+                                Customer tidak menginginkan kafein sama sekali
+                            {% else %}
+                                Level kafein yang diinginkan customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+
+                <div class="pref-item">
+                    <div class="pref-icon">🌡️</div>
+                    <div class="pref-content">
+                        <label>Suhu Minuman</label>
+                        <value class="suhu-badge suhu-{{ preference.suhu }}">
+                            {{ preference.suhu|title }}
+                        </value>
+                        <description>
+                            {% if preference.suhu == 'hot' %}
+                                Customer menginginkan minuman dalam keadaan panas
+                            {% elif preference.suhu == 'cold' %}
+                                Customer menginginkan minuman dalam keadaan dingin
+                            {% else %}
+                                Suhu yang diinginkan customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+
+                <div class="pref-item">
+                    <div class="pref-icon">💰</div>
+                    <div class="pref-content">
+                        <label>Range Budget</label>
+                        <value class="budget-badge budget-{{ preference.budget }}">
+                            {{ preference.budget|title }}
+                        </value>
+                        <description>
+                            {% if preference.budget == 'low' %}
+                                Customer mencari minuman dengan harga terjangkau
+                            {% elif preference.budget == 'mid' %}
+                                Customer bersedia mengeluarkan budget menengah
+                            {% elif preference.budget == 'high' %}
+                                Customer tidak mempermasalahkan harga premium
+                            {% else %}
+                                Range budget yang ditetapkan customer
+                            {% endif %}
+                        </description>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-card">
+        <div class="card-header">
+            <h3>📊 Analisis Preferensi</h3>
+        </div>
+        
+        <div class="card-content">
+            <div class="analysis-content">
+                <div class="analysis-item">
+                    <h4>🎯 Profil Customer</h4>
+                    <p>
+                        Berdasarkan preferensi yang dipilih, customer <strong>{{ preference.nama_customer }}</strong> 
+                        termasuk dalam kategori customer yang menyukai:
+                    </p>
+                    <ul>
+                        <li>Suasana: <strong>{{ preference.mood|title }}</strong></li>
+                        <li>Karakter rasa: <strong>{{ preference.rasa|title }}</strong></li>
+                        <li>Konsistensi: <strong>{{ preference.tekstur|title }}</strong></li>
+                        <li>Kebutuhan kafein: <strong>{{ preference.kafein|title }}</strong></li>
+                        <li>Preferensi suhu: <strong>{{ preference.suhu|title }}</strong></li>
+                        <li>Kategori budget: <strong>{{ preference.budget|title }}</strong></li>
+                    </ul>
+                </div>
+
+                <div class="analysis-item">
+                    <h4>💡 Rekomendasi Strategi</h4>
+                    <p>Untuk customer dengan profil seperti ini, disarankan:</p>
+                    <ul>
+                        {% if preference.mood == 'energi' and preference.kafein in ['tinggi', 'sedang'] %}
+                        <li>Tawarkan menu dengan kandungan kafein tinggi dan rasa yang bold</li>
+                        {% endif %}
+                        
+                        {% if preference.budget == 'low' %}
+                        <li>Fokus pada menu dengan value terbaik dan promosi khusus</li>
+                        {% elif preference.budget == 'high' %}
+                        <li>Tawarkan menu premium dan limited edition</li>
+                        {% endif %}
+                        
+                        {% if preference.rasa == 'manis' and preference.tekstur == 'creamy' %}
+                        <li>Rekomendasikan menu dessert drink dan specialty coffee</li>
+                        {% endif %}
+                        
+                        {% if preference.suhu == 'cold' and preference.tekstur == 'bubbly' %}
+                        <li>Fokus pada menu cold brew, iced coffee, dan sparkling drinks</li>
+                        {% endif %}
+                        
+                        <li>Pertimbangkan untuk follow-up dengan survey kepuasan</li>
+                    </ul>
+                </div>
+
+                <div class="analysis-item">
+                    <h4>📈 Status Feedback</h4>
+                    <p>
+                        {% if preference.feedback_status == 'completed' %}
+                        <span class="text-success">✅ Customer telah menyelesaikan proses feedback.</span>
+                        Ini menunjukkan engagement yang baik dan kepuasan terhadap rekomendasi.
+                        {% elif preference.feedback_status == 'pending' %}
+                        <span class="text-warning">⏳ Feedback customer masih pending.</span>
+                        Pertimbangkan untuk melakukan follow-up via email atau notifikasi.
+                        {% elif preference.feedback_status == 'skipped' %}
+                        <span class="text-muted">⏭️ Customer melewati proses feedback.</span>
+                        Mungkin perlu evaluasi UX untuk proses feedback yang lebih engaging.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="action-buttons">
+    <a href="{{ url_for('admin.riwayat') }}" class="btn-secondary">
+        ← Kembali ke Riwayat
+    </a>
+    <button onclick="window.print()" class="btn-primary">
+        🖨️ Print Detail
+    </button>
+</div>
+
+<style>
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-back {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.btn-back:hover {
+    color: #0056b3;
+}
+
+.detail-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.detail-id {
+    background: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #666;
+    font-family: monospace;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.info-item value {
+    color: #666;
+    font-size: 16px;
+}
+
+.preferences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.pref-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+}
+
+.pref-icon {
+    font-size: 2em;
+    flex-shrink: 0;
+}
+
+.pref-content {
+    flex: 1;
+}
+
+.pref-content label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.pref-content value {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pref-content description {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* Badge Styles */
+.mood-badge, .rasa-badge, .tekstur-badge, .kafein-badge, .suhu-badge, .budget-badge, .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Mood badges */
+.mood-energi { background: #ff6b6b; color: white; }
+.mood-rileks { background: #4ecdc4; color: white; }
+.mood-menyegarkan { background: #45b7d1; color: white; }
+.mood-manis { background: #f39c12; color: white; }
+
+/* Rasa badges */
+.rasa-pahit { background: #8b4513; color: white; }
+.rasa-manis { background: #ff69b4; color: white; }
+.rasa-asam { background: #32cd32; color: white; }
+.rasa-netral { background: #708090; color: white; }
+
+/* Tekstur badges */
+.tekstur-light { background: #87ceeb; color: white; }
+.tekstur-creamy { background: #daa520; color: white; }
+.tekstur-heavy { background: #696969; color: white; }
+.tekstur-bubbly { background: #00ced1; color: white; }
+
+/* Kafein badges */
+.kafein-tinggi { background: #dc3545; color: white; }
+.kafein-sedang { background: #ffc107; color: #212529; }
+.kafein-rendah { background: #28a745; color: white; }
+.kafein-non-kafein { background: #6c757d; color: white; }
+
+/* Suhu badges */
+.suhu-hot { background: #ff4500; color: white; }
+.suhu-cold { background: #1e90ff; color: white; }
+
+/* Budget badges */
+.budget-low { background: #28a745; color: white; }
+.budget-mid { background: #ffc107; color: #212529; }
+.budget-high { background: #6f42c1; color: white; }
+
+/* Status badges */
+.status-completed { background: #28a745; color: white; }
+.status-pending { background: #ffc107; color: #212529; }
+.status-skipped { background: #6c757d; color: white; }
+
+.analysis-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.analysis-item {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #17a2b8;
+}
+
+.analysis-item h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.analysis-item p {
+    margin: 0 0 15px 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+.analysis-item ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.analysis-item li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.text-success { color: #28a745 !important; }
+.text-warning { color: #ffc107 !important; }
+.text-muted { color: #6c757d !important; }
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+@media (max-width: 768px) {
+    .detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .info-grid, .preferences-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pref-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media print {
+    .btn-back, .action-buttons {
+        display: none;
+    }
+    
+    .detail-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+    }
+}
+</style>
+
+{% endblock %}

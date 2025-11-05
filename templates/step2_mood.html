@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>mood</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<div class="container-question">
+<body>
+    <form method="post">
+  <h3>2. Gimana mood kamu hari ini?</h3>
+
+  <label class="option">
+    <input type="radio" name="mood" value="energi" {% if selected == 'energi' %}checked{% endif %} required>
+    <span>Butuh energi & semangat</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="mood" value="rileks" {% if selected == 'rileks' %}checked{% endif %}>
+    <span>Santai & rileks</span> 
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="mood" value="menyegarkan" {% if selected == 'menyegarkan' %}checked{% endif %}>
+    <span>Ingin sesuatu yang menyegarkan</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="mood" value="manis" {% if selected == 'manis' %}checked{% endif %}>
+    <span>Pengen yang manis & soft</span>
+  </label><br>
+
+  <br>
+
+
+<div class="button-container">
+  <a href="{{ url_for('step1_nama') }}" class="previous">Kembali</a>
+
+  <form action="{{ url_for('step3_rasa') }}" method="get">
+    <button class="next" type="submit">Selanjutnya</button>
+  </form>
+</div>
+</form>
+</div>
+<script src="{{ url_for('static', filename='js/radioSelect.js') }}"></script>
+</body>
+</html>

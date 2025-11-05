@@ -1,0 +1,13 @@
+category,key,value
+export_info,export_timestamp,2025-10-06T18:41:52.343220
+export_info,n_users,1500
+export_info,random_seed,42
+export_info,output_directory,exported_training_data
+exported_files,menu_data,exported_training_data\menu_data_preprocessed_20251006_184119.csv
+exported_files,dummy_data,exported_training_data\dummy_user_data_1500users_20251006_184125.csv
+exported_files,cooccurrence_matrix,exported_training_data\cooccurrence_matrix_1500users_20251006_184131.csv
+exported_files,regression_dataset,exported_training_data\regression_dataset_1500users_20251006_184152.csv
+export_status,menu_data,SUCCESS
+export_status,dummy_data,SUCCESS
+export_status,cooccurrence_matrix,SUCCESS
+export_status,regression_dataset,SUCCESS

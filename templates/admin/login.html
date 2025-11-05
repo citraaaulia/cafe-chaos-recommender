@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container-login">
+  <form class="login-box" method="post" action="{{ url_for('admin.login') }}">
+    <h2>Masuk</h2>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="error-msg">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+    <div class="login-data">
+      <label class="unamepass">Username</label>
+      <input id="username" type="text" name="username" placeholder="Masukkan Email-mu" required>
+    </div>
+
+<div class="login-data">
+  <label class="unamepass">Password</label>
+  <div class="pass-input">
+    <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+    <button type="button" id="toggle-password-btn">
+      <img id="toggle-icon" src="{{ url_for('static', filename='icons/show.svg') }}" alt="Tampilkan" width="20">
+    </button>
+  </div>
+</div>
+
+    <button type="submit" class="btn-login">Masuk</button>
+  </form>
+</div>
+<script src="{{ url_for('static', filename='js/togglePassword.js') }}"></script>
+</body>
+</html>

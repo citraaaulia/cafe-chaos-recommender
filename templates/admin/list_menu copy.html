@@ -1,0 +1,44 @@
+    {% extends 'layout.html' %}
+    {% block content %}
+
+
+<div class="menu-header">
+  <h2>List Menu</h2>
+
+  <div class="menu-actions">
+    <form class="search-form" method="get" action="{{ url_for('admin.menu_list') }}">
+      <input type="text" name="search" placeholder="Search..." value="{{ search or '' }}">
+    </form>
+    <a href="{{ url_for('admin.menu_add') }}" class="btn-add">+ Tambah</a>
+  </div>
+</div>
+
+<div class="menu-container">
+  {% for menu in menu_items %}
+    <div class="menu-card">
+      <div class="menu-wrapper">
+      <div><img src="{{ url_for('static', filename='uploads/' ~ menu.foto) if menu.foto else url_for('static', filename='images/default.jpg') }}" alt="foto menu"></div>
+      <div class="menu-card-body">
+        <div class="menu-name">
+          {{ menu.nama_minuman }}
+<a href="{{ url_for('admin.menu_edit', menu_id=menu.menu_id) }}">
+  <img id="edit" src="{{ url_for('static', filename='icons/edit.svg') }}" alt="Edit Menu" width="20">
+</a>        
+</div>
+        <div class="menu-price">Rp {{ "{:,.0f}".format(menu.harga|float) }}</div>
+      </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if page > 1 %}
+    <a href="{{ url_for('admin.menu_list', page=page-1) }}">‹</a>
+  {% endif %}
+  <span>{{ page }}/{{ total_pages }}</span>
+  {% if page < total_pages %}
+    <a href="{{ url_for('admin.menu_list', page=page+1) }}">›</a>
+  {% endif %}
+</div>
+{% endblock %}

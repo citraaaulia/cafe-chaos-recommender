@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>budget</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container-question">
+    <form method="post">
+  <h3>7. Kamu prefer minuman dengan budget berapa hari ini?</h3>
+
+  <label class="option">
+    <input type="radio" name="budget" value="low" {% if selected == 'low' %}checked{% endif %} required>
+    <span>Kurang dari Rp. 15.000</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="budget" value="mid" {% if selected == 'mid' %}checked{% endif %}>
+    <span>Rp. 15.000 - 20.000</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="budget" value="high" {% if selected == 'high' %}checked{% endif %}>
+    <span>Lebih dari Rp. 20.000</span>
+  </label><br>
+
+  <label class="option">
+    <input type="radio" name="budget" value="bebas" {% if selected == 'bebas' %}checked{% endif %}>
+    <span>Bebas</span>
+  </label><br>
+
+  <br>
+<div class="button-container">
+  <a href="{{ url_for('step6_suhu') }}" class="previous">Kembali</a>
+  <form action="{{ url_for('hasil') }}" method="get">
+  <button class="next" type="submit">Selesai</button>
+</form>
+</div>
+</form>
+</div>
+</body>
+<script src="{{ url_for('static', filename='js/radioSelect.js') }}"></script>
+</html>

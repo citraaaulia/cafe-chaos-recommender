@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Header: title kiri, tombol kanan -->
+<div class="editmenu" style="justify-content:space-between; gap:16px;">
+  <h2 style="margin:0; text-align:left;">Detail {{ menu.nama_minuman }}</h2>
+
+  <div class="view-actions" style="display:flex; gap:10px; align-items:center;">
+    <a class="btn-add" href="{{ url_for('admin.menu_edit', menu_id=menu.menu_id) }}">Edit Menu</a>
+
+    <form id="deleteForm" method="POST" action="{{ url_for('admin.menu_delete', menu_id=menu.menu_id) }}">
+      <button type="button" id="btn-delete" class="btn-cancel">Hapus Menu</button>
+    </form>
+  </div>
+</div>
+
+<!-- Konten: copy layout edit, tapi field dibekukan/readonly -->
+<div class="form-edit-menu">
+  <div class="stats-container" style="align-items:flex-start; flex-wrap:wrap;">
+    <!-- KIRI -->
+    <div class="col-left" style="flex:1 1 460px; min-width:360px;">
+
+      <section class="form-grid">
+        <h3>Detail Menu</h3>
+
+        <label>Nama</label>
+        <input class="readonly-input" value="{{ menu.nama_minuman or '' }}" disabled>
+
+        <label>Kategori</label>
+        <div class="readonly-box">
+          {{ selected_labels.categories|join(', ') if selected_labels.categories else '-' }}
+        </div>
+
+        <label>Harga</label>
+        <input class="readonly-input" value="{{ '{:,.0f}'.format(menu.harga|float) }}" disabled>
+
+        <label>Availability</label>
+        <div class="readonly-box">{{ menu.availability }}</div>
+      </section>
+
+      <section class="form-grid">
+        <h3>Profil Rasa (Skor)</h3>
+
+        <label>Kafein Score (0-1)</label>
+        <input class="readonly-input" value="{{ menu.kafein_score }}" disabled>
+
+        <label>Rasa Manis (0-1)</label>
+        <input class="readonly-input" value="{{ menu.rasa_manis }}" disabled>
+
+        <label>Rasa Pahit (0-1)</label>
+        <input class="readonly-input" value="{{ menu.rasa_pahit }}" disabled>
+
+        <label>Rasa Gurih (0-1)</label>
+        <input class="readonly-input" value="{{ menu.rasa_gurih }}" disabled>
+
+        <label>Rasa Asam (0-1)</label>
+        <input class="readonly-input" value="{{ menu.rasa_asam }}" disabled>
+      </section>
+    </div>
+
+    <!-- KANAN -->
+    <div class="col-right" style="flex:1 1 460px; min-width:360px;">
+
+      <section class="form-grid">
+        <h3>Kriteria Minuman</h3>
+
+        <label>Temperatur</label>
+        <input class="readonly-input" value="{{ menu.temperatur_opsi|capitalize }}" disabled>
+
+        <label>Tekstur</label>
+        <input class="readonly-input" value="{% if menu.tekstur_LIGHT %}Light{% elif menu.tekstur_CREAMY %}Creamy{% elif menu.tekstur_BUBBLY %}Bubbly{% elif menu.tekstur_HEAVY %}Heavy{% else %}-{% endif %}" disabled>
+
+        <label>Carbonated</label>
+        <input class="readonly-input" value="{{ 'Ya' if menu.carbonated_score==1.0 else 'Tidak' }}" disabled>
+
+        <label>Sweetness Level</label>
+        <input class="readonly-input" value="{{ menu.sweetness_level }}" disabled>
+      </section>
+
+      <section class="form-grid">
+        <h3>Detail Lainnya</h3>
+
+        <label>Bahan Utama</label>
+        <div class="readonly-box">
+          {{ selected_labels.main_ingredients|join(', ') if selected_labels.main_ingredients else '-' }}
+        </div>
+
+        <label>Topping</label>
+        <div class="readonly-box">
+          {{ selected_labels.toppings|join(', ') if selected_labels.toppings else '-' }}
+        </div>
+
+        <label>Aroma</label>
+        <div class="readonly-box">
+          {{ selected_labels.aromas|join(', ') if selected_labels.aromas else '-' }}
+        </div>
+
+        <label>Flavour Notes</label>
+        <div class="readonly-box">
+          {{ selected_labels.flavour_notes|join(', ') if selected_labels.flavour_notes else '-' }}
+        </div>
+      </section>
+
+      <section class="form-grid">
+        <h3>Data Pendukung</h3>
+        {% if menu.foto %}
+          <div class="current-photo">
+            <p class="current-file">Foto: {{ menu.foto }}</p>
+            <img src="{{ url_for('static', filename='uploads/' ~ menu.foto) }}" alt="Foto menu" width="140">
+          </div>
+        {% else %}
+          <div class="readonly-box">Tidak ada foto.</div>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Modal konfirmasi hapus -->
+<div id="deleteConfirmModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h3>Hapus Menu?</h3>
+    <p>Apakah Anda yakin ingin menghapus menu ini? Tindakan ini tidak dapat dibatalkan.</p>
+    <div class="modal-actions">
+      <button id="modal-cancel-delete">Batal</button>
+      <button id="modal-confirm-delete" class="btn-cancel" style="width:120px;">Ya, Hapus</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/detailmenu.js') }}"></script>
+{% endblock %}

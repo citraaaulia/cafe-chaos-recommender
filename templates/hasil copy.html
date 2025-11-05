@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Rekomendasi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container-result">
+    <h1>Ini minuman yang cocok untuk kamu hari ini!</h1>
+
+    <div class="card-grid">
+      {% for item in rekomendasi %}
+      <div class="recommend-item">
+        <div class="card">
+          <div class="image-wrapper">
+            <img class="rec-items" src="{{ url_for('static', filename='uploads/' + item.foto) }}" alt="{{ item.nama_minuman }}">
+            
+            <div class="info-overlay">
+              <div class="info-row">
+                <h3>{{ item.nama_minuman }}</h3>
+                <p class="harga-minuman">{{ (item.harga / 1000)|int }}K</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skor">
+          <p class="similar">{{ (item.similarity * 100)|round(2) }}% <strong> Cocok</strong></p>
+          <p class="final-scr"><strong>Score</strong> {{ (item.final_score * 100)|round(2) }}%</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div> 
+
+    <div class="actions">
+      <p>Kurang yakin? <a href="{{ url_for('step1_nama') }}">Ulangi quiznya</a></p>
+      <br>
+      
+      <p>Apakah rekomendasi ini membantu?</p>
+      <div class="feedback">
+      <a href="{{ url_for('selesai_quiz') }}">
+        <button class="finish-btn">Ya, makasih</button>
+      </a>
+      <a href="{{ url_for('selesai_quiz') }}">
+        <button class="finish-btn">Belum, nih</button>
+      </a>
+      </div>
+    </div>
+  </div> 
+</body>
+</html>
