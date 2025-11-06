@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+import pymysql
+pymysql.install_as_MySQLdb()
+
+load_dotenv()
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 
@@ -5,7 +12,6 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from models.database import init_mysql
 from model.recommender import get_recommendations, update_feedback, get_recommendation_analytics, init_recommender, create_session
 from controllers.admin_controller import admin_bp
-from flask import request, jsonify, session
 
 def create_app():
     """
@@ -14,13 +20,13 @@ def create_app():
     app = Flask(__name__)
 
     # --- 1. Konfigurasi Aplikasi ---
-    app.config['SECRET_KEY'] = 'kunci_rahasia_yang_sangat_aman_dan_unik'
-    
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-change-me')
+
     # Konfigurasi Database MySQL
-    app.config['MYSQL_HOST'] = '127.0.0.1'
-    app.config['MYSQL_USER'] = 'root'
-    app.config['MYSQL_PASSWORD'] = ''  # Ganti dengan password database Anda jika ada
-    app.config['MYSQL_DB'] = 'db_ml_chaos'
+    app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', '127.0.0.1')
+    app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')
+    app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '')
+    app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'db_ml_chaos')
     app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
     # --- 2. Inisialisasi Ekstensi ---
@@ -263,3 +269,4 @@ def create_app():
         return render_template('errors/500.html'), 500
 
     return app
+app = create_app()
