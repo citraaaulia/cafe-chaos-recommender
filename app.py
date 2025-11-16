@@ -23,10 +23,12 @@ def create_app():
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-change-me')
 
     # Konfigurasi Database MySQL
+
     app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', '127.0.0.1')
     app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')
     app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '')
-    app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'db_ml_chaos')
+    app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'railway')
+    app.config['MYSQL_PORT'] = int(os.getenv('MYSQL_PORT', '3306'))
     app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
     # --- 2. Inisialisasi Ekstensi ---
