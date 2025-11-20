@@ -2411,3 +2411,15 @@ main {
   .modal .modal-actions{ justify-content:space-between; }
   .modal .modal-actions button{ flex:1 1 48%; }
 }
+
+/* Foto di halaman detail menu */
+.detail-photo {
+  max-width: 320px;      /* sesuaikan kalau mau lebih kecil/besar */
+}
+
+.detail-photo img {
+  width: 100%;           /* penuh lebar container */
+  height: auto;          /* proporsi terjaga */
+  display: block;
+  object-fit: cover;     /* kalau fotonya sangat tinggi, tetap rapi */
+}

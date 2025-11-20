@@ -43,7 +43,9 @@
     <div class="menu-card" data-href="{{ url_for('admin.menu_detail', menu_id=menu.menu_id) }}">
       <div class="menu-wrapper">
         <div>
-          <img src="{{ url_for('static', filename='uploads/' ~ menu.foto) if menu.foto else url_for('static', filename='images/default.jpg') }}" alt="foto menu">
+<img
+  src="{{ url_for('static', filename=menu.foto) if menu.foto else url_for('static', filename='images/default.jpg') }}"
+  alt="foto menu">
         </div>
         <div class="menu-card-body">
           <div class="menu-name">

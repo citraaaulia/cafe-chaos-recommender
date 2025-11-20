@@ -15,7 +15,7 @@
       <div class="recommend-item">
         <div class="card">
           <div class="image-wrapper">
-            <img class="rec-items" src="{{ url_for('static', filename='uploads/' + item.foto) }}" alt="{{ item.nama_minuman }}">
+            <img class="rec-items" src="{{ url_for('static', filename=item.foto) }}" alt="{{ item.nama_minuman }}">
             
             <div class="info-overlay">
               <div class="info-row">

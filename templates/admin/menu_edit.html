@@ -210,17 +210,17 @@
         </section>
 
         <!-- Data Pendukung (foto) -->
-        <section class="form-grid">
-          <h3>Data Pendukung</h3>
-          <label for="foto">Ganti Foto</label>
-          <input name="foto" id="foto" type="file" accept="image/*">
-          {% if menu.foto %}
-          <div class="current-photo">
-            <p class="current-file">Foto saat ini: {{ menu.foto }}</p>
-            <img src="{{ url_for('static', filename='uploads/' ~ menu.foto) }}" alt="Foto saat ini" width="100">
-          </div>
-          {% endif %}
-        </section>
+<section class="form-grid">
+  <h3>Data Pendukung</h3>
+  <label for="foto">Ganti Foto</label>
+  <input name="foto" id="foto" type="file" accept="image/*">
+  {% if menu.foto %}
+  <div class="current-photo">
+    <p class="current-file">Foto saat ini: {{ menu.foto }}</p>
+    <img src="{{ url_for('static', filename=menu.foto) }}" alt="Foto saat ini" width="100">
+  </div>
+  {% endif %}
+</section>
 
       </div>
       <!-- /KOLOM KANAN -->

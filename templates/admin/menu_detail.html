@@ -101,17 +101,25 @@
         </div>
       </section>
 
-      <section class="form-grid">
-        <h3>Data Pendukung</h3>
-        {% if menu.foto %}
-          <div class="current-photo">
-            <p class="current-file">Foto: {{ menu.foto }}</p>
-            <img src="{{ url_for('static', filename='uploads/' ~ menu.foto) }}" alt="Foto menu" width="140">
-          </div>
-        {% else %}
-          <div class="readonly-box">Tidak ada foto.</div>
-        {% endif %}
-      </section>
+<section class="form-grid">
+  <h3>Foto Menu</h3>
+
+  <div class="current-photo">
+    {% if menu.foto %}
+      <img src="{{ url_for('static', filename=menu.foto) }}" alt="foto menu" width="100">
+    {% else %}
+      <span class="no-photo">Belum ada foto</span>
+    {% endif %}
+  </div>
+
+  <p class="current-file">
+    {% if menu.foto %}
+      Foto: {{ menu.foto }}
+    {% else %}
+      Foto: -
+    {% endif %}
+  </p>
+</section>
     </div>
   </div>
 </div>
